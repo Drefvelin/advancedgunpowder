@@ -68,7 +68,7 @@ public class GunpowderEvents implements Listener{
 		if(i == null) return;
 		NBTItem nbt = NBTItem.get(i);
 		if(nbt.hasType() == false) return;
-		if(!nbt.getType().equalsIgnoreCase("musket")) return;
+		if(!nbt.getType().equalsIgnoreCase(ConfigLoader.type)) return;
 		for(HandWeapon w : ConfigLoader.loadedHandWeapons) {
         	String mmoitem = w.getMMOItem();
         	String type = mmoitem.split("\\.")[0];
@@ -97,9 +97,9 @@ public class GunpowderEvents implements Listener{
         			public void run()
         			   {
         				if(t >= 0) {
-        					p.sendTitle(" ", "§eEquipping... §7" + t/10 + "§es", 1, 20, 5);
+        					p.sendTitle(" ", "Â§eEquipping... Â§7" + t/10 + "Â§es", 1, 20, 5);
         				} else {
-        					p.sendTitle(" ", "§eEquipped!", 1, 20, 10);
+        					p.sendTitle(" ", "Â§eEquipped!", 1, 20, 10);
         	        		p.removePotionEffect(PotionEffectType.SLOW);
         					isEquipping.put(p, false);
         					equippedItem.put(p, i);
@@ -151,12 +151,12 @@ public class GunpowderEvents implements Listener{
         			}
         		} else {
         			if(!equippedItem.containsKey(p)) {
-            			p.sendMessage("§cWeapon not equipped yet!");
+            			p.sendMessage("Â§cWeapon not equipped yet!");
             			e.setCancelled(true);
             			return;
             		}
             		if(!equippedItem.get(p).equals(weaponItem)) {
-            			p.sendMessage("§cWeapon not equipped yet!");
+            			p.sendMessage("Â§cWeapon not equipped yet!");
             			e.setCancelled(true);
             			return;
             		}
@@ -167,7 +167,7 @@ public class GunpowderEvents implements Listener{
     				DoubleData dRecoil = (DoubleData) m.getData(ItemStats.RECOIL);
     				Double range = dRange.getValue();
     		        Double recoil = dRecoil.getValue();
-    		        AttributeInstance attribute = net.Indyuce.mmocore.api.player.PlayerData.get(p).getAttributes().getInstance("focus");
+    		        AttributeInstance attribute = net.Indyuce.mmocore.api.player.PlayerData.get(p).getAttributes().getInstance(ConfigLoader.attribute);
     		        Integer level = attribute.getTotal();
     				NamespacedKey pKey = new NamespacedKey(GunpowderMain.plugin, p.getName());
     				ItemMeta pTags = weaponItem.getItemMeta();
@@ -239,7 +239,7 @@ public class GunpowderEvents implements Listener{
 		}
 		if(Math.floor(Math.random()*100)<=distance) {
 			proficiency = proficiency+1;
-			p.sendMessage("§eYour proficiency with this weapon has increased to §a"+proficiency+"/10");
+			p.sendMessage("Â§eYour proficiency with this weapon has increased to Â§a"+proficiency+"/10");
 			nbtTags.getPersistentDataContainer().set(pKey, PersistentDataType.INTEGER, proficiency);
 			weaponItem.setItemMeta(nbtTags);
 		}
@@ -261,12 +261,12 @@ public class GunpowderEvents implements Listener{
 	        		} else {
 	        			proficiency = nbtTags.getPersistentDataContainer().get(pKey, PersistentDataType.INTEGER);
 	        		}
-	        		p.sendMessage("§eYour proficiency with this weapon is §a"+proficiency+"/10");
+	        		p.sendMessage("Â§eYour proficiency with this weapon is Â§a"+proficiency+"/10");
 	        		return;
 	        	}
 			}
 		}
-		p.sendMessage("§cCannot check proficiency of this item, are you holding the correct item?");
+		p.sendMessage("Â§cCannot check proficiency of this item, are you holding the correct item?");
 	}
 	public void lightEffect(Location loc) {
 		if(!loc.getBlock().getType().equals(Material.AIR)) return;
@@ -297,7 +297,7 @@ public class GunpowderEvents implements Listener{
 
 	public void reloadMusket(HandWeapon w, ItemStack item, Player p) {
 		if(checkAmmo(w.getShots(), p, w.getAmmo()) == false) {
-			p.sendMessage("§cNo Ammo");
+			p.sendMessage("Â§cNo Ammo");
 			if(isReloading.containsKey(p)) {
 				isReloading.remove(p);
 			}
@@ -313,7 +313,7 @@ public class GunpowderEvents implements Listener{
 		if(checkArmor(p)) {
 			time = time/4;
 		}
-		AttributeInstance attribute = net.Indyuce.mmocore.api.player.PlayerData.get(p).getAttributes().getInstance("focus");
+		AttributeInstance attribute = net.Indyuce.mmocore.api.player.PlayerData.get(p).getAttributes().getInstance(ConfigLoader.attribute);
         Integer level = attribute.getTotal();
         time = time * (1-((level * ConfigLoader.reloadPerLevel)/100));
         time = (double)Math.round(time*10)/10;
@@ -328,9 +328,9 @@ public class GunpowderEvents implements Listener{
 			public void run()
 			   {
 				if(i >= 0) {
-					p.sendTitle(" ", "§eReloading... §7" + i/10 + "§es", 1, 20, 5);
+					p.sendTitle(" ", "Â§eReloading... Â§7" + i/10 + "Â§es", 1, 20, 5);
 				} else {
-					p.sendTitle(" ", "§eReloaded!", 1, 20, 10);
+					p.sendTitle(" ", "Â§eReloaded!", 1, 20, 10);
 					ItemMeta nbtTags = item.getItemMeta();
 	        		NamespacedKey isLoaded = new NamespacedKey(GunpowderMain.plugin, "loaded");
 	        		nbtTags.getPersistentDataContainer().set(isLoaded, PersistentDataType.INTEGER, w.getShots());
@@ -375,7 +375,7 @@ public class GunpowderEvents implements Listener{
 			if(!p.getInventory().getItemInMainHand().getType().equals(Material.CROSSBOW)) return;
 			NBTItem nbt = NBTItem.get(p.getInventory().getItemInMainHand());
 			if(!nbt.hasType()) return;
-			if(nbt.getType().equalsIgnoreCase("musket")) {
+			if(nbt.getType().equalsIgnoreCase(ConfigLoader.type)) {
 				e.setCancelled(true);
 			}
 		}

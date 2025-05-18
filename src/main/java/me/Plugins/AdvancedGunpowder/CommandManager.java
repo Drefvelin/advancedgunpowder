@@ -24,7 +24,7 @@ public class CommandManager implements Listener, CommandExecutor{
 			}
 			if(args[0].equalsIgnoreCase("reload")) {
 				if(Permissions.isAdmin(sender) == false) {
-					sender.sendMessage("§cYou do not have access to this command!");
+					sender.sendMessage("Â§cYou do not have access to this command!");
 					return false;
 				}
 				if(sender instanceof Player) {
@@ -37,7 +37,7 @@ public class CommandManager implements Listener, CommandExecutor{
 			}
 			if(args[0].equalsIgnoreCase("setproficiency") && args.length == 3) {
 				if(Permissions.isAdmin(sender) == false) {
-					sender.sendMessage("§cYou do not have access to this command!");
+					sender.sendMessage("Â§cYou do not have access to this command!");
 					return false;
 				}
 				if(sender instanceof Player) {

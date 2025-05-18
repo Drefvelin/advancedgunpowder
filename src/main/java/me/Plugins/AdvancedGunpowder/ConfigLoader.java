@@ -20,6 +20,9 @@ public class ConfigLoader {
 	
 	public static Double recoilPerLevel;
 	public static Double reloadPerLevel;
+
+	public static String attribute;
+	public static String type;
 	
 	public void loadConfig(FileConfiguration config) {
 		loadedHandWeapons = new ArrayList<HandWeapon>();
@@ -34,6 +37,9 @@ public class ConfigLoader {
 		for(String key : list) {
 			loadedHandWeapons.add(getHandWeaponFromConfig(config, key));
 		}
+
+		attribute = config.getString("attribute", "charisma");
+		type = config.getString("item-type", "muskets");
 	}
 	
 	public HandWeapon getHandWeaponFromConfig(FileConfiguration config, String key) {

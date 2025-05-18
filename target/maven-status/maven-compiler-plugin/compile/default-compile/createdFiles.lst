@@ -1,0 +1,11 @@
+me\Plugins\AdvancedGunpowder\Permissions.class
+me\Plugins\AdvancedGunpowder\GunpowderMain.class
+me\Plugins\AdvancedGunpowder\GunpowderEvents$2.class
+me\Plugins\AdvancedGunpowder\ConfigLoader.class
+me\Plugins\AdvancedGunpowder\GunpowderEvents$3.class
+me\Plugins\AdvancedGunpowder\CommandManager.class
+me\Plugins\AdvancedGunpowder\ItemUtil.class
+me\Plugins\AdvancedGunpowder\GunpowderEvents$1.class
+me\Plugins\AdvancedGunpowder\GunpowderEvents.class
+me\Plugins\AdvancedGunpowder\TabCompletion.class
+me\Plugins\AdvancedGunpowder\HandWeapon.class
