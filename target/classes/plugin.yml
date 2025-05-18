@@ -1,0 +1,12 @@
+main: me.Plugins.AdvancedGunpowder.GunpowderMain
+api-version: 1.18
+name: AdvancedGunpowder
+version: 1.0
+author: Drefvelin
+
+depend: [MMOCore, MMOItems, MythicLib]
+
+commands:
+  agp:
+      useage: /<command>
+      description: Advanced Gunpowder Command

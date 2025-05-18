@@ -1,0 +1,3 @@
+advancedgunpowder.admin:
+       description: Admin Perms for gunpowder plugin.
+       default: false
